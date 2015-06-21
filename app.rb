@@ -35,66 +35,61 @@ require_relative "categoryclass.rb"
 #------------------------------------------------------------------------------------------------------
 # ########################### BEGIN WEB UX ############################
 
+# home menu with add product, edit product, see all products, see all products in category, see all products
+# location and edit store options. 
+
 get "/home" do
   erb :homemenu
-  # This would be where your menu is with a erb menu file with pretty HTML. right?
 end
-
+# add product form. 
+# Returns form params to save product path.
 get "/add_product" do
   erb :"add_product"
 end
-
+# Recieves product params from add product form.
+#
+# Adds product to products table as long as "name" is not empty.
+# if name is empty, asks them to try again.
+#
+# .add adds to database and to Product object.
+#
+# Returns success page if name is not empty.
 get "/save_product" do
-  # Since the form's action was "/save_student", it sent its values here.
-  #
-  # Sinatra stores them for us in `params`, which is a hash. Like this:
-  #
-  # {"name" => "Beth", "age" => "588"}
-  
-  # So using `params`, we can run our class/instance methods as needed
-  # to create a student record.
-
+  if params["name"].empty?
+    "Sorry name cannot be empty try again."
+    # add erb file here to return to edit page.
+  else 
   Product.add({"name" => params["name"], "brand" => params["brand"], "category_id" => params["category_id"].to_i, "quantity" => params["quantity"].to_i, "location_id" => params["location_id"].to_i})
   erb :"product_added"
 end
+end
+# edit_products path displays an edit form for product.
 get "/edit_products" do
   erb :"products" # Where the edit form lives.
 end
 
 get "/edit_save/" do
   @product_instance = Product.find(params["id"])
+  if !params["name"].empty?
   @product_instance.name = params["name"]
+end
+if !params["brand"].empty?
   @product_instance.brand = params["brand"]
+end
+if !params["category_id"].empty?
   @product_instance.category_id = params["category_id"].to_i
+end
+if !params["quantity"].empty?
   @product_instance.quantity = params["quantity"].to_i
+end
+if !params["location_id"].empty?
   @product_instance.location_id = params["location_id"].to_i
+end
   @product_instance.save
   erb :edit_success
+  # add option back to main menu here.
 end
 
-  
- 
-  
-  
-  # if params["edit"] == "brand"
-  #   # new erb file with edit name field.
-  #   @product_instance.brand = params["value_edited"]
-  # elsif params["edit"] == "category_id"
-  #   # new erb file with edit name field.
-  #   @product_instance.category_id = params["value_edited"].to_i
-  # elsif params["edit"] == "quantity"
-  #   # new erb file with edit name field.
-  #   @product_instance.quantity = params["value_edited"].to_i
-  # elsif params["edit"] == "location_id"
-  #   # new erb file with edit name field.
-  #   @product_instance.location_id = params["value_edited"].to_i
-  # end
-  # @product_instance.save
-  # erb :"edit_product" # This is the success message.
-# end
-
-# get "/edit_success/" do
-# @product_instance.name = params["name"]
 
 
 
