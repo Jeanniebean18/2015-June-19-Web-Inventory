@@ -1,0 +1,32 @@
+<%# product add form here
+# come back to this form to generate cat id and locatin id> %>
+
+
+<form action="/save_product">
+  
+  
+    <p> Product Name : <input type="text" placeholder="Product Name" name="name"></p>
+    <p> Product Brand : <input type="text" placeholder="Product Brand" name="brand"></p>
+    <p> Category : <select name="category_id"></p>
+      <option value="1">Furniture</option>
+      <option value="2">Pillows and Rugs</option>
+      <option value="3">Kitchen</option>
+      <option value="4">Outdoor</option> 
+      </select>
+      
+    <br>
+    <p> Quantity in Stock: <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
+     
+    <p> Location : <select name="location_id">
+        <option value="1">Dundee</option>
+        <option value="2">Old Market</option>
+        <option value="3">Benson</option>
+        <option value="4">West Omaha</option></p>
+        </select>
+        
+    
+        
+    <p> <input type="submit" value="add product"></p>
+</form>
+
+    

@@ -1,0 +1,51 @@
+<p>Here's all the products.</p>
+# This should be a drop down menu wit 
+   
+<form action="/edit_save/">
+  <p> Choose a product to edit : <select name="id"></p>
+    <% Product.all.each do |product| %>
+    <option value="<%= product.id %>"> <%= product.name %>  </option>
+    <% end %>
+  </select>
+  
+    <p> New Product Name : <input type="text" placeholder="Product Name" name="name"></p>
+    <p> New Product Brand : <input type="text" placeholder="Product Brand" name="brand"></p>
+    <p> New Category : <select name="category_id"></p>
+      <option value="1">Furniture</option>
+      <option value="2">Pillows and Rugs</option>
+      <option value="3">Kitchen</option>
+      <option value="4">Outdoor</option> 
+      </select>
+      
+    <br>
+    <p> Quantity in Stock: <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
+     
+    <p> New Location : <select name="location_id">
+        <option value="1">Dundee</option>
+        <option value="2">Old Market</option>
+        <option value="3">Benson</option>
+        <option value="4">West Omaha</option></p>
+        </select>
+      
+      <p> <input type="submit" value="edit product"></p>
+  </form>
+   
+
+ 
+  The key to figuring out your next move is on this page. THink about the URL and how to include the full edit form on this page. 
+ 
+  You need to take the product id
+  then param ["name"] - which refers to what they want to edit.
+  have them input a new text value of the edit. 
+ 
+  so you have three inputs
+ 
+  product
+  what to edit
+  text in field
+ 
+  take these three things and bring it over to your app do run a method that will save this. 
+  Check out his last video. I think the answer is there. 
+ 
+ 
+ 

@@ -1,0 +1,9 @@
+    <a href="/home">Return to main menu?</a>
+   
+    <p>Here's all the products.</p>
+
+    <ul>  
+      <% Product.all.each do |product| %>
+        <li><%= product.name %></li>
+      <% end %>
+    </ul>
