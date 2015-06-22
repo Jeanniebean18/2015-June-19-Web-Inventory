@@ -1,6 +1,6 @@
 To edit a product, choose product name. Enter any new fields that need updating. If no new info, leave blank. 
    
-<form action="/edit_save/">
+<form action="/edit_save">
   <p> Choose a product to edit : <select name="id"></p>
     <% Product.all.each do |product| %>
     <option value="<%= product.id %>"> <%= product.name %>  </option>

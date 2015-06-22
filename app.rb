@@ -56,73 +56,97 @@ end
 # Returns success page if name is not empty.
 get "/save_product" do
   if params["name"].empty?
-    "Sorry name cannot be empty try again."
-    # add erb file here to return to edit page.
+    # Unsuccessful edit page.
+    erb :"try_again"
   else 
-  Product.add({"name" => params["name"], "brand" => params["brand"], "category_id" => params["category_id"].to_i, "quantity" => params["quantity"].to_i, "location_id" => params["location_id"].to_i})
-  erb :"product_added"
-end
+    Product.add({"name" => params["name"], "brand" => params["brand"], "category_id" => params["category_id"].to_i, "quantity" => params["quantity"].to_i, "location_id" => params["location_id"].to_i})
+    # Successful edit page.
+    erb :"product_added"
+  end
 end
 # edit_products path displays an edit form for product.
+# click on products to edit first. then display pre-loaded form to user. 
+# Don't think you would need the empty's anymore. It would just be loaded with the original
+# information. 
 get "/edit_products" do
-  erb :"products" # Where the edit form lives.
+  erb :"products" 
 end
-
-get "/edit_save/" do
+# Recieves params from edit_products/products page.
+# If fields aren't empty, save new value in object.
+# TODO Show full product in edit form. 
+get "/edit_save" do
   @product_instance = Product.find(params["id"])
   if !params["name"].empty?
-  @product_instance.name = params["name"]
-end
-if !params["brand"].empty?
-  @product_instance.brand = params["brand"]
-end
-if !params["category_id"].empty?
-  @product_instance.category_id = params["category_id"].to_i
-end
-if !params["quantity"].empty?
-  @product_instance.quantity = params["quantity"].to_i
-end
-if !params["location_id"].empty?
-  @product_instance.location_id = params["location_id"].to_i
-end
+    @product_instance.name = params["name"]
+  end
+  if !params["brand"].empty?
+    @product_instance.brand = params["brand"]
+  end
+  if !params["category_id"].empty?
+    @product_instance.category_id = params["category_id"].to_i
+  end
+  if !params["quantity"].empty?
+    @product_instance.quantity = params["quantity"].to_i
+  end
+  if !params["location_id"].empty?
+    @product_instance.location_id = params["location_id"].to_i
+  end
+  # Save product in database
   @product_instance.save
+  # Success page for editing product
   erb :edit_success
-  # add option back to main menu here.
-end
-
-
-
-
-get "/see_products" do
-  erb :"see_products" # lists all products
-end
-
-# get "/see_product/:x/name" do
-#   @product_instance = Product.find(params["x"])
-#   @product_instance.params["edit"] = params["text"]
-#   @product_instance.save
-
-# end
-
-get "/products_category" do
-  erb :"product_category"
   
 end
 
+# Returns a list of all products.
+get "/see_products" do
+  erb :"see_products" 
+end
+# Returns a list of all categories.
+# User clicks category to see all products under that category.
+get "/products_category" do
+  erb :"product_category"
+end
+# Returns a list of all locations.
+# User clicks location to see all products under that location.
+get "/products_location" do
+  erb :"product_location"
+end
+
+get "/edit_store" do
+  erb :"edit_store" # where the edit store form lives for stores.
+end
+
+get "/save_store" do
+  @location_instance = Location.find(params["id"])
+  if !params["name"].empty?
+    @location_instance.name = params["name"]
+  end
+  if !params["address"].empty?
+    @location_instance.address = params["address"]
+  end
+  @location_instance.save
+  erb :"edit_store_success"
+  
+end
+# Returns a param id for location chosen
+# Creates location instance by param ID recieved from products_location.
+# Returns a list of products in that location.
+get "/see_location/:x" do
+  @location_instance = Location.find(params["x"])
+  @products_in_location = Product.where("location_id", params["x"])
+  erb :"see_products_in_location"
+end
+# Returns a param id for category chosen.
+# Creates category instance by param ID recieved from products_category.
+# Returns a list of products in that category.
 get "/see_category/:x" do
-  # `params` stores information from BOTH the path (:x) and from the
-  # form's submitted information. So right now,
-  # `params` is {"x" => "3", "name" => "Marlene"}
   @category_instance = Category.find(params["x"])
   @products_in_category = Product.where("category_id", params["x"])
   erb :"see_products_in_category"
-
-  # TODO - Send the user somewhere nice after they successfully
-  # accomplish this name change.
-  # TODO how to make the edit list dynamic?
-  # TODO if fields are blank, say try again - sumeet had this in his tutorial. basically is name is nil, don't continue the step to add to database?
-  # add location edit - should be easier than product won't require a dynamic form I don't think. 
-  # 
 end
 
 
+# TODO how to make the edit form dynamic?
+# TODO add in delete functionality.
+# use instance . names to show pre-loaded fields. 

@@ -33,8 +33,8 @@ class Product
   # Returns hash of updated location row. 
   
   def save
-      CONNECTION.execute("UPDATE products SET name = '#{@name}', brand = '#{@brand}', category_id = #{@category_id}, quantity = #{@quantity}, location_id = #{@location_id} WHERE id = #{@id};")
-    end
+    CONNECTION.execute("UPDATE products SET name = '#{@name}', brand = '#{@brand}', category_id = #{@category_id}, quantity = #{@quantity}, location_id = #{@location_id} WHERE id = #{@id};")
+  end
 end
 
   

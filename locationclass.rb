@@ -33,4 +33,8 @@ class Location
     end
     return results_as_objects
   end
+  
+  def save
+    CONNECTION.execute("UPDATE locations SET name = '#{@name}', address = '#{@address}' WHERE id = #{@id};")
+  end
 end

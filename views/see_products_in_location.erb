@@ -1,10 +1,8 @@
-Success! <%= params["name"] %> Added!
-    
-<a href="/home">Return to main menu?</a>
-   
-<p>Here's all the products.</p>
-
-<% Product.all.each do |product|  %>
+All Products in <%= @location_instance.name %>
+  
+<% @products_in_location.each do |product|  %>
 <p> <%="Product ID : #{product.id} - Name : #{product.name} - Brand : #{product.brand} -Category: #{product.category_id} - Quantity : #{product.quantity} - Location : #{product.location_id}"%> </p>
 <%end%>
-   
+    
+    
+<a href="/home">Return to main menu?</a>

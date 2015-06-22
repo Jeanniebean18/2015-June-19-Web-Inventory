@@ -1,0 +1,9 @@
+Choose a location:
+<ul>  
+  <% Location.all.each do |location| %>
+  <li><a href="/see_location/<%= location.id %>"><%= location.name %></a></li>
+  <% end %>
+</ul>
+    
+    
+<a href="/home">Return to main menu?</a>

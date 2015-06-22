@@ -1,0 +1,7 @@
+<%= params["name"] %>   <%= params["address"] %> is Updated! 
+
+<p>Store Locations:<p><% Location.all.each do |location| %>
+  <p> Location ID: <%= location.id %> Name: <%= location.name %> Address: <%= location.address %> </p>
+  <% end %>
+
+  <a href="/home">Return to main menu?</a>

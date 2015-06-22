@@ -1,9 +1,6 @@
-    <a href="/home">Return to main menu?</a>
+<a href="/home">Return to main menu?</a>
    
-    <p>Here's all the products.</p>
-
-    <ul>  
-      <% Product.all.each do |product| %>
-        <li><%= product.name %></li>
-      <% end %>
-    </ul>
+<p>Here's all the products.</p>
+<% Product.all.each do |product|  %>
+<p> <%="Product ID : #{product.id} - Name : #{product.name} - Brand : #{product.brand} -Category: #{product.category_id} - Quantity : #{product.quantity} - Location : #{product.location_id}"%> </p>
+<%end%>
