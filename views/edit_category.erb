@@ -1,0 +1,26 @@
+<% if @error %>
+<p> The category was not saved. Please include required field name.</p>
+<%end%>
+
+<h1> Edit Category </h1>
+ 
+<p><strong>Edit any fields that need updating and hit submit.</strong></p>
+<p>Here are the current category details. </p>
+   
+<form action="/save_category">
+  
+  
+  <!-- <p> Choose a product to edit : <select name="id"></p>
+    <% Product.all.each do |product| %>
+    <option value="<%= product.id %>"> <%= product.name %>  </option>
+    <% end %>
+    </select> -->
+  
+    <p> New Category Name : <input type="text" placeholder="" name="name" value=" <%=@category.name%>"></p>
+      
+
+    <input type="hidden" name= "id" value="<%=@category.id%>">
+    <p> <input type="submit" value="submit changes"></p>
+  </form>
+
+  <a href="/home">Return to main menu?</a>

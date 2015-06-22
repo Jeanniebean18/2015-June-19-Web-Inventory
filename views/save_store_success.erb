@@ -1,0 +1,10 @@
+<h1> Store <%= params["name"] %> - <%= params["address"] %> Added!</h1>
+    
+<a href="/home">Return to main menu?</a>
+   
+<p>Here's all the products.</p>
+
+<% Location.all.each do |location|  %>
+<p> <%="Location ID : #{location.id} - Name : #{location.name} - Address : #{location.address}"%> </p>
+<%end%>
+   

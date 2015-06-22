@@ -1,0 +1,12 @@
+<% if @error %>
+<p> The store location was not saved. Please include required fields.</p>
+<%end%>
+
+<h1>Add a Store:</h1> 
+<form action="/save_new_store">
+  
+  
+    <p> Store Name (required): <input type="text" placeholder="Store Name" name="name" value="<%= params["name"]%>"></p>
+    <p> Store Address (required): <input type="text" placeholder="Store Address" name="address" value="<%= params["address"]%>"></p>
+  <p> <input type="submit" value="Add Store"></p>
+  </form>

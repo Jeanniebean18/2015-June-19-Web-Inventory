@@ -1,0 +1,11 @@
+<% if @error %>
+<p> The category was not saved. Please include required fields.</p>
+<%end%>
+
+<h1>Add a Category:</h1> 
+<form action="/save_new_category">
+  
+  
+    <p> Category Name (required): <input type="text" placeholder="Category Name" name="name" value="<%= params["name"]%>"></p>
+    <p> <input type="submit" value="Add Category"></p>
+  </form>

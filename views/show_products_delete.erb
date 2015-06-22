@@ -1,3 +1,4 @@
+<h1> Delete Product </h1>
 <form action="/delete_product">
   <p> Choose a product to delete : <select name="id"></p>
     <% Product.all.each do |product| %>
@@ -6,9 +7,9 @@
   </select>
   
   <p> Are you sure you want to delete this product? :  
-    <input type="checkbox" name="decision" value="yes"> Yes
-    <input type="checkbox" name="decision" value="no"> No
+    <input type="radio"  name="decision" value="yes" > Yes
+    <input type="radio"  name="decision" value="no" checked> No
       
-      <p> <input type="submit" value="delete product"></p>
-    </form>
+    <p> <input type="submit" value="delete product"></p>
+  </form>
     

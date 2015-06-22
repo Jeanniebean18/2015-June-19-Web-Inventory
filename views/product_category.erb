@@ -1,4 +1,4 @@
-this is where you show all categories. 
+<h1>Choose a Category</h1>
 <ul>  
   <% Category.all.each do |category| %>
   <li><a href="/see_category/<%= category.id %>"><%= category.name %></a></li>

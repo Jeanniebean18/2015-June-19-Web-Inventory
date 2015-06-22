@@ -1,5 +1,6 @@
 <center> <h1>Welcome to Fiber's Product Inventory System!</h1>
   <p>Please choose an action:</p> 
+  <h2> Products:</h2>
   <form method="get" action="/add_product">
     <button type="submit">Add a Product</button>
   </form>
@@ -12,14 +13,25 @@
   <form method="get" action="/see_products">
     <button type="submit">See all Products</button>
   </form>
-  <form method="get" action="/products_category">
-    <button type="submit">See all Products in a Category</button>
+  <h2>Stores:</h2>
+  <form method="get" action="/store_list">
+    <button type="submit">Edit a Store Location</button>
+  </form>
+  <form method="get" action="/add_store">
+    <button type="submit">Add a Store Location</button> 
   </form>
   <form method="get" action="/products_location">
     <button type="submit">See all Products in a Location</button>
   </form>
-  <form method="get" action="/store_list">
-    <button type="submit">Edit a Store Location</button>
+  <h2>Categories:</h2>
+ <form method="get" action="/category_list">
+    <button type="submit">Edit a Category</button>
+  </form>
+  <form method="get" action="/add_category">
+     <button type="submit">Add a Category</button>
+   </form>
+  <form method="get" action="/products_category">
+    <button type="submit">See all Products in a Category</button>
   </form>
 </center>
 <!-- (2) Edit a product
@@ -27,3 +39,4 @@
   (4) See all products in a category (5) See all products at store location
   (6) Edit store locations
   (0) Quit." -->
+

@@ -1,0 +1,7 @@
+<h1>Choose a Category to edit:</h1>
+
+<ul>  
+  <% Category.all.each do |category| %>
+  <li><a href="/edit_category/<%= category.id %>"><%= category.name %></a></li>
+  <% end %>
+</ul>

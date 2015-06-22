@@ -1,0 +1,11 @@
+<h1> Category <%= params["name"] %> Added!</h1>
+    
+<a href="/home">Return to main menu?</a>
+   
+<p>Here's all the Categories.</p>
+
+<% Category.all.each do |category|  %>
+<p> <%="Category ID : #{category.id} - Name : #{category.name}" %></p>
+
+<%end%>
+   

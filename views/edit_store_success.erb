@@ -1,5 +1,7 @@
 <%= params["name"] %>   <%= params["address"] %> is Updated! 
 
+<h1> All Stores: </h1>
+
 <p>Store Locations:<p><% Location.all.each do |location| %>
   <p> Location ID: <%= location.id %> Name: <%= location.name %> Address: <%= location.address %> </p>
   <% end %>

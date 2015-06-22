@@ -7,29 +7,25 @@
   <form action="/save_product">
   
   
-  <p> Product Name (required): <input type="text" placeholder="Product Name" name="name"></p>
-  <p> Product Brand (required): <input type="text" placeholder="Product Brand" name="brand"></p>
-  <p> Category (required): <select name="category_id"></p>
-    <option value="" disabled selected>Select the Category:</option>
-  <p> <% Category.all.each do |category| %>
-    <option value="<%= category.id %>" placeholder="choose category"> <%= category.name %> </option>
+    <p> Product Name (required): <input type="text" placeholder="Product Name" name="name" value="<%= params["name"]%>"></p>
+    <p> Product Brand (required): <input type="text" placeholder="Product Brand" name="brand" value="<%= params["brand"]%>"></p>
+    <p> Category (required): <select name="category_id"></p>
+      
+      <% Category.all.each do |category| %>
+      <option value="<%= category.id %>"> <%= category.name %> </option>
       <% end %>
     </select>
-      
-   <p>Quantity in Stock (required): <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
+      <p>Quantity in Stock (required): <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
  
      
-  <p>Location (required): <select name="location_id"></p>
-        <option value="" disabled selected>Select the Location:</option>
-        <% Location.all.each do |location| %>
-        <option value="<%= location.id %>"> <%= location.name %> </option>
-        <% end %>
-      </select>
+    <p>Location (required): <select name="location_id"></p>
+      <% Location.all.each do |location| %>
+      <option value="<%= location.id %>"> <%= location.name %> </option>
+      <% end %>
+    </select>
         
-    
-        
-  <p> <input type="submit" value="add product"></p>
-</form>
+    <p> <input type="submit" value="add product"></p>
+  </form>
 
 
     

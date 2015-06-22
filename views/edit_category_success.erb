@@ -1,0 +1,9 @@
+<h1><%= params["name"] %> is Updated! </h1>
+
+<h1> All Stores: </h1>
+
+<p>Store Categories:<p><% Category.all.each do |category| %>
+  <p> Category ID: <%= category.id %> Name: <%= category.name %> </p>
+  <% end %>
+
+  <a href="/home">Return to main menu?</a>

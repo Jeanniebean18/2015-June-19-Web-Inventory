@@ -28,4 +28,8 @@ class Category
     end
     return results_as_objects
   end
+  
+  def save
+    CONNECTION.execute("UPDATE categories SET name = '#{@name}' WHERE id = #{@id};")
+  end
 end

@@ -1,4 +1,8 @@
-<a href="/home">Return to main menu?</a>
+<% if @error %>
+<p> The product was not saved. Please include required fields name and address.</p>
+<%end%>
+
+<h1> Edit Store </h1>
  
 <p><strong>Edit any fields that need updating and hit submit.</strong></p>
 <p>Here are the current store details. </p>
@@ -13,8 +17,10 @@
       </select> -->
   
       <p> New Store Name : <input type="text" placeholder="" name="name" value=" <%=@location.name%>"></p>
-      <p> New Product Brand : <input type="text" placeholder="" name="address" value=" <%=@location.address%>"></p>
+      <p> New Product Address : <input type="text" placeholder="" name="address" value=" <%=@location.address%>"></p>
 
       <input type="hidden" name= "id" value="<%=@location.id%>">
-<p> <input type="submit" value="edit store"></p>
+<p> <input type="submit" value="submit changes"></p>
 </form>
+
+<a href="/home">Return to main menu?</a>
