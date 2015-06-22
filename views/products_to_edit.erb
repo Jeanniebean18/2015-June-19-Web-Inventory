@@ -1,0 +1,9 @@
+<h1>Choose a product to edit:</h1>
+<ul>  
+  <% Product.all.each do |product| %>
+  <li><a href="/edit_products_form/<%= product.id %>"><%= product.name %> - Brand:<%= product.brand %> - Quantity: <%= product.quantity %> - Category: <%= product.category_id %> - Location: <%= product.location_id %></a></li>
+  <% end %>
+</ul>
+    
+    
+<a href="/home">Return to main menu?</a> 

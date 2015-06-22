@@ -35,6 +35,10 @@ class Product
   def save
     CONNECTION.execute("UPDATE products SET name = '#{@name}', brand = '#{@brand}', category_id = #{@category_id}, quantity = #{@quantity}, location_id = #{@location_id} WHERE id = #{@id};")
   end
+  
+  def delete
+    CONNECTION.execute("DELETE FROM products WHERE id = #{@id};") # need to see if this one will work, if not look up.
+  end
 end
 
   

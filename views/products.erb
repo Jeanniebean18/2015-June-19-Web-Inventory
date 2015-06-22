@@ -1,33 +1,39 @@
-To edit a product, choose product name. Enter any new fields that need updating. If no new info, leave blank. 
+<h1>Edit Product</h1>
+Here are the current product details, enter any changes to the product and submit.
    
 <form action="/edit_save">
-  <p> Choose a product to edit : <select name="id"></p>
+  
+  <!-- <p> Choose a product to edit : <select name="id"></p>
     <% Product.all.each do |product| %>
     <option value="<%= product.id %>"> <%= product.name %>  </option>
     <% end %>
-  </select>
+    </select> -->
   
-  <p> New Product Name : <input type="text" placeholder="Product Name" name="name"></p>
-  <p> New Product Brand : <input type="text" placeholder="Product Brand" name="brand"></p>
-  <p> New Category: <select name="category_id"></p>
-    <option></option>
-    <% Category.all.each do |category| %>
-    <option value="<%= category.id %>"> <%= category.name %> </option>
-    <% end %>
-  </select>
+    <p> New Product Name : <input type="text" placeholder="Product Name" name="name" value=" <%=@product_instance.name%>"></p>
+    <p> New Product Brand : <input type="text" placeholder="Product Brand" name="brand" value=" <%=@product_instance.brand%>"></p>
+    
+    <p> New Category: <select name="category_id"></p>
+      <% @category = Category.find(@product_instance.category_id)%>
+      <!-- <option value="<%= @category.id%>"> <%=@category.name%></option> -->
+      <% Category.all.each do |category| %>
+      <option value="<%= category.id %>" <%="selected" if category.id == @product_instance.category_id%>> <%= category.name %> </option>
+      <% end %>
+    </select>
+  
+  
+    <p> Quantity in Stock: <input type="number" name="quantity" value="<%=@product_instance.quantity%>"> </p>
+    
+    <p> New Location: <select name="location_id"></p>
+      <% @location = Location.find(@product_instance.location_id)%>
+      <!-- <option value="<%= @location.id %>"> <%=@location.name%></option> -->
+      <% Location.all.each do |location| %>
+      <option value="<%= location.id %>" <%="selected" if location.id == @product_instance.location_id%>> <%= location.name %> </option>
+      <% end %>
+    </select>
+    <input type="hidden" name= "id" value="<%=@product_instance.id%>">
       
-  <br>
-  <p> Quantity in Stock: <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
-     
-  <p> New Location: <select name="location_id"></p>
-    <option></option>
-    <% Location.all.each do |location| %>
-    <option value="<%= location.id %>"> <%= location.name %> </option>
-    <% end %>
-  </select>
-      
-  <p> <input type="submit" value="edit product"></p>
-</form>
+    <p> <input type="submit" value="submit changes"></p>
+  </form>
 
  
  

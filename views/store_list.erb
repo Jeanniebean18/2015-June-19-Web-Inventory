@@ -1,0 +1,7 @@
+Choose a location to edit:
+
+<ul>  
+  <% Location.all.each do |location| %>
+  <li><a href="/edit_store/<%= location.id %>"><%= location.name %> - <%= location.address %></a></li>
+  <% end %>
+</ul>

@@ -1,27 +1,35 @@
-<form action="/save_product">
+<% if @error %>
+<p> The product was not saved. Please include required fields.</p>
+<%end%>
+
+<h1>Add a Product:</h1> 
+<p align="right">
+  <form action="/save_product">
   
   
-  <p> Product Name : <input type="text" placeholder="Product Name" name="name"></p>
-  <p> Product Brand : <input type="text" placeholder="Product Brand" name="brand"></p>
-  <p> Category: <select name="category_id"></p>
-    
-    <% Category.all.each do |category| %>
-    <option value="<%= category.id %>"> <%= category.name %> </option>
-    <% end %>
-      
-    <br>
-    <p> Quantity in Stock: <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
-     
-    <p>Location: <select name="location_id"></p>
-      <option></option>
-      <% Location.all.each do |location| %>
-      <option value="<%= location.id %>"> <%= location.name %> </option>
+  <p> Product Name (required): <input type="text" placeholder="Product Name" name="name"></p>
+  <p> Product Brand (required): <input type="text" placeholder="Product Brand" name="brand"></p>
+  <p> Category (required): <select name="category_id"></p>
+    <option value="" disabled selected>Select the Category:</option>
+  <p> <% Category.all.each do |category| %>
+    <option value="<%= category.id %>" placeholder="choose category"> <%= category.name %> </option>
       <% end %>
     </select>
+      
+   <p>Quantity in Stock (required): <input type="number" placeholder="Quantity in Stock" name="quantity"></p>
+ 
+     
+  <p>Location (required): <select name="location_id"></p>
+        <option value="" disabled selected>Select the Location:</option>
+        <% Location.all.each do |location| %>
+        <option value="<%= location.id %>"> <%= location.name %> </option>
+        <% end %>
+      </select>
         
     
         
-    <p> <input type="submit" value="add product"></p>
-  </form>
+  <p> <input type="submit" value="add product"></p>
+</form>
+
 
     

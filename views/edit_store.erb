@@ -1,17 +1,20 @@
 <a href="/home">Return to main menu?</a>
  
-To edit a store location, choose location name. Enter any new fields that need updating. If no new info, leave blank. 
+<p><strong>Edit any fields that need updating and hit submit.</strong></p>
+<p>Here are the current store details. </p>
    
 <form action="/save_store">
-  <p> Choose a store to edit : <select name="id"></p>
-    <% Location.all.each do |location| %>
-    <option value="<%= location.id %>"> <%= location.name %>  </option>
-    <% end %>
-  </select>
-  <p> New Store Name : <input type="text" placeholder="name" name="name"></p>
-</select>
-<p> New Store Address : <input type="text" placeholder="address" name="address"></p>
-</select>
-      
+  
+  
+    <!-- <p> Choose a product to edit : <select name="id"></p>
+      <% Product.all.each do |product| %>
+      <option value="<%= product.id %>"> <%= product.name %>  </option>
+      <% end %>
+      </select> -->
+  
+      <p> New Store Name : <input type="text" placeholder="" name="name" value=" <%=@location.name%>"></p>
+      <p> New Product Brand : <input type="text" placeholder="" name="address" value=" <%=@location.address%>"></p>
+
+      <input type="hidden" name= "id" value="<%=@location.id%>">
 <p> <input type="submit" value="edit store"></p>
 </form>

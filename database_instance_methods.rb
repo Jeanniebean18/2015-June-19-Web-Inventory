@@ -11,11 +11,11 @@ module DatabaseInstanceMethods
   # 
   # Returns nil because row is deleted. 
   # instance method.
-  def delete_row
-    # Figure out the table's name from the object we're calling the method on.
-    table_name = self.class.to_s.pluralize.underscore
-    CONNECTION.execute("DELETE FROM #{table_name} WHERE id = #{@id};") # need to see if this one will work, if not look up.
-  end
+  # def delete
+ #    # Figure out the table's name from the object we're calling the method on.
+ #    table_name = self.class.to_s.pluralize.underscore
+ #    CONNECTION.execute("DELETE FROM #{table_name} WHERE id = #{@id};") # need to see if this one will work, if not look up.
+ #  end
   
   # Updates/saves a row's information in a table
   #

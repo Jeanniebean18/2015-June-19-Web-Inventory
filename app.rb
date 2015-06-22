@@ -55,9 +55,26 @@ end
 #
 # Returns success page if name is not empty.
 get "/save_product" do
-  if params["name"].empty?
+  if params["name"].empty? 
     # Unsuccessful edit page.
-    erb :"try_again"
+    @error = true
+    erb :"add_product"
+  elsif params["brand"].empty? 
+    # Unsuccessful edit page.
+    @error = true
+    erb :"add_product"
+  elsif params["quantity"].empty? 
+    # Unsuccessful edit page.
+    @error = true
+    erb :"add_product"
+  elsif params["category_id"].empty? 
+    # Unsuccessful edit page.
+    @error = true
+    erb :"add_product"
+  elsif params["location_id"].empty? 
+    # Unsuccessful edit page.
+    @error = true
+    erb :"add_product"
   else 
     Product.add({"name" => params["name"], "brand" => params["brand"], "category_id" => params["category_id"].to_i, "quantity" => params["quantity"].to_i, "location_id" => params["location_id"].to_i})
     # Successful edit page.
@@ -69,6 +86,11 @@ end
 # Don't think you would need the empty's anymore. It would just be loaded with the original
 # information. 
 get "/edit_products" do
+  erb :"products_to_edit" 
+end
+
+get "/edit_products_form/:x" do
+  @product_instance = Product.find(params["x"])
   erb :"products" 
 end
 # Recieves params from edit_products/products page.
@@ -91,6 +113,23 @@ get "/edit_save" do
   if !params["location_id"].empty?
     @product_instance.location_id = params["location_id"].to_i
   end
+  
+  #
+  # if !params["name"].empty?
+  #   @product_instance.name = params["name"]
+  # end
+  # if !params["brand"].empty?
+  #   @product_instance.brand = params["brand"]
+  # end
+  # if !params["category_id"].empty?
+  #   @product_instance.category_id = params["category_id"].to_i
+  # end
+  # if !params["quantity"].empty?
+  #   @product_instance.quantity = params["quantity"].to_i
+  # end
+  # if !params["location_id"].empty?
+  #   @product_instance.location_id = params["location_id"].to_i
+  # end
   # Save product in database
   @product_instance.save
   # Success page for editing product
@@ -106,13 +145,12 @@ get "/delete" do
 end
 
 get "/delete_product" do
-if params["decision"] == "yes"
-  @product_instance = Product.find(params["id"])
-  @product_instance.delete
-  # success erb
-  "Your product has been deleted."
-  # erb :"delete_success"
-end
+  @product_delete = Product.find(params["id"])
+  if params["decision"] == "yes"
+    @product_delete.delete
+    erb :"product_success_delete"
+    # erb :"delete_success"
+  end
 end
 
 # Returns a list of all products.
@@ -129,20 +167,23 @@ end
 get "/products_location" do
   erb :"product_location"
 end
-
-get "/edit_store" do
+get "/store_list" do
+  erb :"store_list" 
+end
+get "/edit_store/:x" do
+  @location = Location.find(params["x"])
   erb :"edit_store" # where the edit store form lives for stores.
 end
 
 get "/save_store" do
-  @location_instance = Location.find(params["id"])
+  @location = Location.find(params["id"])
   if !params["name"].empty?
-    @location_instance.name = params["name"]
+    @location.name = params["name"]
   end
   if !params["address"].empty?
-    @location_instance.address = params["address"]
+    @location.address = params["address"]
   end
-  @location_instance.save
+  @location.save
   erb :"edit_store_success"
 end
 
@@ -168,5 +209,7 @@ end
 
 
 # TODO how to make the edit form dynamic?
-# TODO add in delete functionality.
+# TODO add in delete functionality of store.
+# TODO add category function
+
 # use instance . names to show pre-loaded fields. 
