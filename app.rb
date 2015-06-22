@@ -98,6 +98,23 @@ get "/edit_save" do
   
 end
 
+get "/delete" do
+  #show form with product to pick from and
+  # another field checking yes. 
+  # submit
+  erb :"show_products_delete"
+end
+
+get "/delete_product" do
+if params["decision"] == "yes"
+  @product_instance = Product.find(params["id"])
+  @product_instance.delete
+  # success erb
+  "Your product has been deleted."
+  # erb :"delete_success"
+end
+end
+
 # Returns a list of all products.
 get "/see_products" do
   erb :"see_products" 
@@ -127,8 +144,11 @@ get "/save_store" do
   end
   @location_instance.save
   erb :"edit_store_success"
-  
 end
+
+
+
+
 # Returns a param id for location chosen
 # Creates location instance by param ID recieved from products_location.
 # Returns a list of products in that location.
