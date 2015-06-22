@@ -32,4 +32,9 @@ class Category
   def save
     CONNECTION.execute("UPDATE categories SET name = '#{@name}' WHERE id = #{@id};")
   end
+  
+  
+  def delete
+    CONNECTION.execute("DELETE FROM categories WHERE id = #{@id};") # need to see if this one will work, if not look up.
+  end
 end

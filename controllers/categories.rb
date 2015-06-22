@@ -33,3 +33,21 @@ end
       erb :"save_category_success"
     end
 end
+
+get "/delete_category_list" do
+    #show form with product to pick from and
+    # another field checking yes. 
+    # submit
+    erb :"show_categories_delete"
+  end
+
+  get "/delete_category" do
+    @category_delete = Category.find(params["id"])
+    if params["decision"] == "yes"
+      @category_delete.delete
+      erb :"category_success_delete"
+    else
+      erb :"category_not_deleted"
+      # erb :"delete_success"
+    end
+  end

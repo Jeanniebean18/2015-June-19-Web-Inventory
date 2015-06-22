@@ -1,0 +1,15 @@
+<h1> Delete Category </h1>
+<form action="/delete_category">
+  <p> Choose a category to delete : <select name="id"></p>
+    <% Category.all.each do |product| %>
+    <option value="<%= product.id %>"> <%= product.name %>  </option>
+    <% end %>
+  </select>
+  
+  <p> Are you sure you want to delete this product? :  
+    <input type="radio"  name="decision" value="yes" > Yes
+    <input type="radio"  name="decision" value="no" checked> No
+      
+    <p> <input type="submit" value="delete category"></p>
+  </form>
+    
